@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title><%= title %></title>
+  <link rel='stylesheet' href='/stylesheets/style.css'/>
+  <script src="/javascripts/jquery-1.11.2.min.js"></script>
+  <script>
+    $(function () {
+      $('#modify').click(function () {
+        location.href = "/board/update/<%=page%>/<%=data.num%>";
+      });
+
+      $('#btnDel').click(function () {
+        $('#frm1').show();
+        $('#btnList').hide();
+      });
+
+      $('#cancel').click(function () {
+        $('#btnList').show();
+        $('#frm1').hide();
+      });
+
+      $('#del').click(function () {
+        if($('#passwd').val() == "") {
+          alert('비밀번호를 꼭 입력하세요!!!!');
+          $('#passwd').focus();
+          return;
+        }
+
+        document.frm1.submit();
+      });
+    });
+  </script>
+  <!-- 합쳐지고 최소화된 최신 CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+  <!-- 부가적인 테마 -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+  <div class="row">
+    <h1><%= title %></h1>
+    <a href="/board/list">리스트</a><br/>
+    <!-- num, title, content, passwd, regdate, hit, reply, recmd, id -->
+      <table width="400" class="table table-condensed">
+        <tr>
+          <th>제목</th>
+          <td><%=data.title%></td>
+        </tr>
+        <tr>
+          <th>내용</th>
+          <td>
+            <pre>
+              <%=data.content%>
+            </pre>
+          </td>
+        </tr>
+        <tr>
+          <th>아이디</th>
+          <td><%=data.id%></td>
+        </tr>
+        <tr>
+          <th>날짜</th>
+          <td><%=data.regdate%></td>
+        </tr>
+        <tr>
+          <th>조회수</th>
+          <td><%=data.hit%></td>
+        </tr>
+        <tr>
+          <th>댓글수</th>
+          <td><%=data.reply %></td>
+        </tr>
+        <tr>
+          <th>추천수</th>
+          <td><%=data.recmd %></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <span id="btnList">
+              <input type="button" value="수정" id="modify" class="btn btn-primary"/>
+              <input type="button" value="삭제" id="btnDel" class="btn btn-default"/>
+            </span>
+            <form action="/board/delete" method="post" style="display:none" name="frm1" id="frm1" class="form-inline">
+              <input type="hidden" name="num" value="<%=data.num%>" class="form-control"/>
+              <input type="hidden" name="page" value="<%=page%>" class="form-control"/>
+              <div>
+              비밀번호 : <input type="password" name="passwd" id="passwd" size="12" maxlength="12" class="form-control"/>
+              <input type="button" value="DELETE" id="del" class="btn btn-primary"/>
+              <input type="button" value="CANCEL" id="cancel" class="btn btn-default"/>
+              </div>
+            </form>
+          </td>
+        </tr>
+      </table>
+  </div>
+</div>
+</body>
+</html>

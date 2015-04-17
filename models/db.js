@@ -13,13 +13,12 @@ var options = {
 var db = mongoose.createConnection(uri, options);
 
 // 자동 증가 모듈 (autoincreament module)
-var autoinc = require('mongoose-id-autoinc');
-autoinc.init(db); // 초기화 (initialize)
+//var autoinc = require('mongoose-id-autoinc');
+//autoinc.init(db); // 초기화 (initialize)
 
 // 에러시 발생하는 이벤트 (emmit error)
 db.on('error', function (err) {
   if(err) console.error('db err', err);
-
 });
 
 // 한번만 발생하는 이벤트 (emmit once)

@@ -4,17 +4,17 @@
 
 var mongoose = require('mongoose');
 // MYSQL의 DATE_FORMAT (similar DATE_FORMAT of MYSQL)
-var FormatDate = require('mongoose-schema-formatdate');
-var autoinc = require('mongoose-id-autoinc');
+//var FormatDate = mongoose.Schema.Types.FormatDate = require('mongoose-schema-formatdate');
+
+//var autoinc = require('mongoose-id-autoinc');
 
 // DB Modeling
-var boardSchema = new mongoose.Schema({
+var BoardSchema = new mongoose.Schema({
   "title" : String,
   "content" : String,
   "passwd" : String,
   "regdate" : {
-    "type" : FormatDate,
-    "format" : "YYYY-MM-DD HH:mm:ss",
+    "type" : Date,
     "default" : Date.now()
   },
   "hit" : {
@@ -23,3 +23,13 @@ var boardSchema = new mongoose.Schema({
   },
   "id" : String
 });
+
+// https://github.com/mariodu/mongoose-id-autoinc 참조
+//BoardSchema.plugin(autoinc.plugin, {
+//  "model" : "Board",
+//  "field" : "num",
+//  "start" : 1,
+//  "step" : 1
+//});
+
+var Board = mongoose.model('Board', BoardSchema);

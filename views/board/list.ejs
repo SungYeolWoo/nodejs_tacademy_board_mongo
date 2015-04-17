@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+  <div class="container">
+    <div class="row">
+    <h1><%= title %></h1>
+    <a href="/board/write">쓰기</a>
+    <!-- 번호, 제목, 작성자, 날짜, 조회수-->
+    <table width="600" class="table table-condensed">
+      <tr>
+        <th width="40">번호</th>
+        <th width="260">제목</th>
+        <th width="100">작성자</th>
+        <th width="160">날짜</th>
+        <th width="40">조회</th>
+      </tr>
+      <%
+        for(var i= 0, len = data.length; i < len, item = data[i]; i++){
+      %>
+      <tr>
+        <td><%=max-i%></td>
+        <td><a href="/board/read/<%=page%>/<%=item.num%>"><%=item.title%></a></td>
+        <td><%=item.id%></td>
+        <td><%=item.regdate%></td>
+        <td><%=item.hit%></td>
+      </tr>
+      <%
+        }
+      %>
+    </table>
+    <div style="width:46em;text-align:center;padding-top:2px">
+      <% if(page > pageSize) { %>
+        [ <a href="/board/list/1" style="text-decoration: none;">◀◀</a> ]
+        [ <a href="/board/list/<%=startPage-1%>" style="text-decoration: none;">◀</a> ]
+      <% } else {%>
+        [ <span style="color:gray">◀◀</span> ]
+        [ <span style="color:gray">◀</span> ]
+      <% } %>
+      &nbsp;&nbsp;
+      <% for (var i=startPage; i<=endPage; i++) { %>
+        <% if (i== page) {%>
+          [ <%=i%> ]
+        <% } else { %>
+          [ <a href="/board/list/<%=i%>" style="text-decoration: none;"><%=i%></a> ]
+        <% } %>
+      <% } %>
+      &nbsp;&nbsp;
+      <% if (endPage < totalPage) { %>
+        [ <a href="/board/list/<%=endPage+1%>" style="text-decoration: none;">▶</a> ]
+        [ <a href="/board/list/<%=totalPage%>" style="text-decoration: none;">▶▶</a> ]
+      <% } else {%>
+        [ <span style="color:gray">▶</span> ]
+        [ <span style="color:gray">▶▶</span> ]
+      <% } %>
+    </div>
+    </div>
+  </div>
+  </body>
+</html>

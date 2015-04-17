@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <!-- 합쳐지고 최소화된 최신 CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <!-- 부가적인 테마 -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+    <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <a href="/board/list">리스트</a><br/>
+
+    <form action="/board/write" method="post" class="form-inline">
+      <!--title, content-->
+      <table width="400" class="table table-condensed">
+        <tr>
+          <th>제목</th>
+          <td><input type="text" name="title" size="30" maxlength="50" class="form-control"/></td>
+        </tr>
+        <tr>
+          <th>내용</th>
+          <td><textarea name="content" cols="30" rows="10" class="form-control"></textarea></td>
+        </tr>
+        <tr>
+          <th>비밀번호</th>
+          <td><input type="password" name="passwd" size="12" maxlength="12" class="form-control"/></td>
+        </tr>
+        <tr>
+          <td colspan="2">
+            <input type="submit" value="쓰기" class="btn btn-primary"/>
+            <input type="reset" value="취소" class="btn btn-default"/>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>
