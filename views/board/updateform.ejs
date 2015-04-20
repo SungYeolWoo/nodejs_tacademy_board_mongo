@@ -19,27 +19,27 @@
 
     <form action="/board/update" method="post" class="form-inline">
       <!--title, content-->
-      <table width="400" class="table table-condensed">
+      <table class="table table-condensed">
         <tr>
           <th>제목</th>
           <td>
-            <input type="hidden" name="num" value="<%=data.num%>"/>
+            <input type="hidden" name="num" value="<%=data.num%>" />
             <input type="hidden" name="page" value="<%=page%>"/>
-            <input type="text" name="title" size="30" maxlength="50" value="<%=data.title%>"/>
+            <input type="text" name="title" size="30" maxlength="50" value="<%=data.title%>" class="form-control"/>
           </td>
         </tr>
         <tr>
           <th>내용</th>
-          <td><textarea name="content" cols="30" rows="10"><%=data.content%></textarea></td>
+          <td><textarea name="content" cols="30" rows="10" class="form-control"><%=data.content%></textarea></td>
         </tr>
         <tr>
           <th>비밀번호</th>
-          <td><input type="password" name="passwd" size="12" maxlength="12"/></td>
+          <td><input type="password" name="passwd" size="12" maxlength="12" class="form-control"/></td>
         </tr>
         <tr>
           <td colspan="2">
             <input type="submit" value="수정" class="btn btn-primary"/>
-            <input type="reset" value="취소" class="btn btn-default" />
+            <input type="reset" value="취소" class="btn btn-default" onclick="history.back()"/>
           </td>
         </tr>
       </table>

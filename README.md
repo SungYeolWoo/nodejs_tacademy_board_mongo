@@ -15,11 +15,14 @@ Tacademy Node.js 게시판 구현
 
 	writeform  : get /board/write
 	write : post /board/write
+	write_300  : post /board/write300
+	
+	list : get /board/list, /board/list/:page
+	
+	read : get /board/read/:page/:num
 
-	list : get /board/list/:page
-
-	modifyform : get /board/modify
-	modify : post /board/modify
+	modifyform : get /board/update
+	modify : post /board/update/:page/:num
 
 	delete form : get /board/delete
 	delete : post /board/delete
